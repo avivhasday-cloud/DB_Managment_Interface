@@ -1,0 +1,15 @@
+version: '3.0'
+services:
+  mysql_server:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_DATABASE=test
+    ports:
+      - "1552:3306"  
+    expose:
+      - "1552"
+    volumes:
+      - $PWD/python/tests/mocks/test_db.sql:/docker-entrypoint-initdb.d/test_db.sql
+
