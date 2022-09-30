@@ -17,7 +17,7 @@ pipeline {
         }
         stage("Start container") {
             steps {
-                sh 'docker-compose up -d --no-color --wait'
+                sh 'docker-compose up -d --no-color'
                 sh 'docker-compose ps'
             }
         }
@@ -34,7 +34,7 @@ pipeline {
         stage("Test") {
             steps {
                 sh 'echo $PWD'
-                sh 'python3 -m unittest $PWD/python/tests '
+                sh 'python3 -m unittest discover'
             }
         }
     }
