@@ -42,7 +42,7 @@ pipeline {
             steps {
                 script {
                     catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                        withCredentials([usernamePassword(credentialsId: 'example-secure', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                        withCredentials([usernamePassword(credentialsId: '829f6427-a474-48c2-a120-d02b4b6e5da2', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                             def encodedPassword = URLEncoder.encode("$GIT_PASSWORD",'UTF-8')
                             sh "git config user.email admin@example.com"
                             sh "git config user.name example"
