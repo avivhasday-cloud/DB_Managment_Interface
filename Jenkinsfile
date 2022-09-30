@@ -29,7 +29,6 @@ pipeline {
                     make clean
                     make 
                     cd ..
-
                 '''
             }
         }
@@ -39,9 +38,11 @@ pipeline {
                 sh 'python3 -m unittest discover'
             }
         }
-        stage("Deploy"){
-            sh 'git checkout master'
-            sh 'git merge dev'
+        stage("Deploy") {
+            steps {
+                sh 'git checkout master'
+                sh 'git merge dev'
+            }
         }
     }
     post {
