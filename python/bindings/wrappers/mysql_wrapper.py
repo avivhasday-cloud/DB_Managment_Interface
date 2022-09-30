@@ -15,6 +15,7 @@ class MySQLCWrapper:
     QUERY_TABLE_COLUMNS_STATEMENT = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS"
 
     def __init__(self, path_to_shared_lib: str = Config.SHARED_LIB_PATH) -> None:
+        print(path_to_shared_lib)
         self._shared_c_lib = CDLL(path_to_shared_lib)
         self.initialize_shared_lib()
         self.mysql_pointer = self._get_mysql_object()

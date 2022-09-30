@@ -21,6 +21,16 @@ pipeline {
                 sh 'docker-compose ps'
             }
         }
+        stage("Compile C code") {
+            steps {
+                sh '''
+                    cd c
+                    make clean
+                    make 
+                    cd ..
+                '''
+            }
+        }
         stage("Test") {
             steps {
                 sh 'echo $PWD'
