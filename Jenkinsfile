@@ -10,5 +10,28 @@ pipeline {
                 '''
             }
         }
+        stage("Prune Docker data") {
+            steps {
+                sh 'docker system prune -a --volumes -f'
+            }
+        }
+        stage("Start container") {
+            steps {
+                sh 'docker-compose up -d --no-color --wait'
+                sh 'docker-compose ps'
+            }
+        }
+        stage("Test") {
+            steps {
+                sh 'echo $PWD'
+                sh 'python3 -m unittest $PWD/python/tests '
+            }
+        }
+    }
+    post {
+        always {
+            sh 'docker-compose down --remove-orphans -v'
+            sh 'docker-compose ps'
+        }
     }
 }
