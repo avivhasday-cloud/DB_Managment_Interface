@@ -40,8 +40,9 @@ pipeline {
         }
         stage("Deploy") {
             steps {
+                sh 'git pull'
                 sh 'git checkout master'
-                sh 'git merge origin/dev'
+                sh 'git merge dev'
                 sh 'git commit -m "merge dev to master after successfully build"'
                 sh 'git push'
             }
