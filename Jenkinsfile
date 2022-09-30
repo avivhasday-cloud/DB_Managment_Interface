@@ -38,13 +38,11 @@ pipeline {
                 sh 'python3 -m unittest discover'
             }
         }
-        stage("Deploy") {
-            withCredentials([usernamePassword(credentialsId: 'git-pass-credentials-ID', passwordVariable: 'GIT_AUTHOR_NAME', usernameVariable: 'GIT_USERNAME')]) {
-                sh("git checkout master")
-                sh("git merge origin/dev")
-                sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@my-repo.git --tags')
-            }
-        }
+    }
+    withCredentials([usernamePassword(credentialsId: 'git-pass-credentials-ID', passwordVariable: 'GIT_AUTHOR_NAME', usernameVariable: 'GIT_USERNAME')]) {
+        sh("git checkout master")
+        sh("git merge origin/dev")
+        sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@my-repo.git --tags')
     }
     post {
         always {
