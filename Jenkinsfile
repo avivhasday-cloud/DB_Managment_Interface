@@ -48,7 +48,7 @@ pipeline {
                             sh "git config user.name jenkins"
                             sh "git add ."
                             sh "git commit -m 'Triggered Build: ${env.BUILD_NUMBER}'"
-                            sh "git push https://$GIT_USERNAME:${encodedPassword}@github.com/$GIT_USERNAME/example.git HEAD:origin/master"
+                            sh "git push origin HEAD:master"
                         }
                     }
                 }
