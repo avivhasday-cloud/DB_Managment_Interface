@@ -38,7 +38,7 @@ pipeline {
                 sh 'python3 -m unittest discover'
             }
         }
-
+    }
     post {
         always {
             sh 'docker-compose down --remove-orphans -v'
